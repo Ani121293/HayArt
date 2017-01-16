@@ -1,47 +1,23 @@
+var logger = require('./log.js');
 var express = require('express');
 var app = express();
-
-var server = require('http').createServer(app);
-
-//server-configuration 
-var path = require('path');
-var appDir = path.dirname(require.main.filename);
-app.set('view engine', 'ejs');
-app.set('views', appDir+ "/WebContent/view/");
-app.engine('html', require('ejs').renderFile);
-	
-// controller
-var getIndex = function(req, res) {
-	res.render('index.html')
-	console.log("Rendering index page!!!!")
-}
-
-var getProducts = function(req,res) {
-	res.render('products.html')
-}
-
-var getDetails = function(req,res) {
-	res.render('details.html')
-}
-
-var getContacts = function(req,res) {
-	res.render('contacts.html')
-}
-
-var getAboutUs = function(req,res) {
-	res.render('about_us.html')
-}
-
+var config = require('./config');
+var controller = require('./controller');
+var router = require('./router');
+app = config(app)
+app = router(app)	
 //router
-app.get('/index', getIndex);
-app.get('/products', getProducts);
-app.get('/details', getDetails);
-app.get('/contacts',getContacts);
-app.get('/about_us',getAboutUs);
+// app.get('/index', controller.getIndex);
+// app.get('/products', controller.getProducts);
+// app.get('/details', controller.getDetails);
+// app.get('/contacts', controller.getContacts);
+// app.get('/about_us', controller.getAboutUs);
 
-server.listen(8081,'127.0.0.1', function () {
+var server = app.listen(8081,'127.0.0.1', function (err) {
+    if(err){
+	 logger.error('Couldn\'t start the server!!!')
+   }
    var host = server.address().address
    var port = server.address().port
-   
-   console.log("Example app listening at http://%s:%s", host, port)
+   logger.info("HayArt is listening at http://" + host + ":" + port)
 })
