@@ -1,7 +1,14 @@
 # HayArt
 
 The web application is for decorative stones.
-It should contain the folloeing pages:\n
+
+
+- MongoDb 
+
+	1. db.products.ensureIndex({product_name: 1}, {unique: true, dropDups: true})
+	2. db.info.ensureIndex({company_name: 1}, {unique: true, dropDups: true})
+
+It should contain the following pages:\n
 	- Index(main)\n
 	- Products\n
 	- Details\n

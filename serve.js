@@ -6,12 +6,6 @@ var controller = require('./controller');
 var router = require('./router');
 app = config(app)
 app = router(app)	
-//router
-// app.get('/index', controller.getIndex);
-// app.get('/products', controller.getProducts);
-// app.get('/details', controller.getDetails);
-// app.get('/contacts', controller.getContacts);
-// app.get('/about_us', controller.getAboutUs);
 
 var server = app.listen(8081,'127.0.0.1', function (err) {
     if(err){
