@@ -4,6 +4,8 @@ var app = express();
 var config = require('./config');
 var controller = require('./controller');
 var router = require('./router');
+var db = require('./db')
+
 app = config(app)
 app = router(app)	
 

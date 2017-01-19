@@ -1,4 +1,6 @@
 'use strict'
+var model = require('./model')
+var logger = require('./log')
 
 module.exports = { 
 
@@ -36,7 +38,17 @@ module.exports = {
 	},
 	
 	addProduct : function(req, res) {
-		logger.info("Adding product to db\n db.products.insert({ product_name : '*productName*', product_size : '*size*', product_weight : '*weight*', product_image : '*image*', product_types : ['image1', 'image2'], product_images :['image3', 'image4']})")
+		logger.info("Adding product to db\n");
+		var product = new model.Product(req.body)
+		product.save(function(err) {
+			if (err) {
+				logger.error("Couldn't add the product \n" + err.errmsg)
+				res.send("Couldn't add the product \n" + err.errmsg)
+			}else {
+				logger.info('Product saved successfully!')
+				res.send('Product saved successfully!')
+			}
+		})
 	},
 	updateProduct : function(req, res){
 		logger.info("Updating product detail \n db.products.update({product_name : '*productName*'},{$set:{'*key*':'*newValue*'}})")
