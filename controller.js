@@ -39,23 +39,51 @@ module.exports = {
 	
 	addProduct : function(req, res) {
 		logger.info("Adding product to db\n");
-		var product = new model.Product(req.body)
-		product.save(function(err) {
+		var product = new model.Product(req.body);
+		product.save(function(err, doc) {
 			if (err) {
 				logger.error("Couldn't add the product \n" + err.errmsg)
 				res.send("Couldn't add the product \n" + err.errmsg)
 			}else {
 				logger.info('Product saved successfully!')
 				res.send('Product saved successfully!')
+				console.log(doc)
 			}
 		})
 	},
 	updateProduct : function(req, res){
 		logger.info("Updating product detail \n db.products.update({product_name : '*productName*'},{$set:{'*key*':'*newValue*'}})")
-	},
+		var product =  req.body;
+		var options = {runValidators: true, new: true};
+		var updateProperty = Object.keys(product)[1];
+		var updateParam = {}
+		updateParam[updateProperty] = product[updateProperty];
+		model.Product.findOneAndUpdate({product_name : product.product_name}, {$set : updateParam}, options, function(err, doc){
+			if (err) {
+				logger.error("Couldn't update the product \n" + err.errmsg)
+				res.send("Couldn't update the product \n" + err.errmsg)
+			}else if(doc == null) { 
+				logger.info('The product with \'' +  product.product_name +'\'   name is missing')
+				res.send('The product with ' +  product.product_name +'name is missing')
+			}else if(doc != null){
+				logger.info('Product updated successfully!')
+				console.log(doc)
+				res.send('Product updated successfully!')
+			}
+		})},
 
 	deleteProduct : function (req, res){
 		logger.info("Deleting product\n db.products.remove({product_name : '*productName*'})")
+		var product = new model.Product(req.body)
+		model.Product.remove({ product_name : product.product_name }, function (err) {
+			if (err) {
+				logger.error("Couldn't delete the product \n" + err.errmsg)
+				res.send("Couldn't delete the product \n" + err.errmsg)
+			}else {
+				logger.info('Product deleted successfully!')
+				res.send('Product deleted successfully!')
+			}
+		})
 	},
 
 	deleteImage : function(req, res){

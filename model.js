@@ -12,9 +12,6 @@ var productSchema = new Schema({
 	product_images : [String]
 });
 
-var Product = mongoose.model('Product', productSchema);
-module.exports = Product;
-
 
 var infoSchema = new Schema({
 	company_name : {type: String, required: [true, 'Please insert the company name'], unique: true},
@@ -29,6 +26,7 @@ var infoSchema = new Schema({
 	})
 
 var Info = mongoose.model('Info', infoSchema);
+var Product = mongoose.model('Product', productSchema);
 
 module.exports.Product = Product;
 module.exports.Info = Info;
