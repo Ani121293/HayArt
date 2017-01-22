@@ -18,6 +18,7 @@ module.exports = function(app){
     app.get('/details', controller.getDetails);
     app.post('/details', controller.addImage);
     app.delete('/details', controller.deleteImage);
-
+    app.post('/details/type', controller.addImage);
+    app.delete('/details/type', controller.deleteImage);
     return app;
 }
