@@ -1,95 +1,109 @@
 'use strict'
-var model = require('./model')
-var logger = require('./log')
+var model = require('./model');
+var logger = require('./log');
 
-    var addImageForProduct = function(Product, callback){
-            var response;
-            if(!Product.hasOwnProperty('product_name')) {
-                         response = 'Please specify  \'' + product_name +' \' property!\n';
-                    logger.error(response);
-                    callback(response);
-             }else if(!Product.hasOwnProperty('update')){
-                         responose = 'Please specify added images with \'update\' property!\n';
-                    logger.error(response);
-                    callback(response);
-            }
-            var UpdateItem = Product['update'];
-              var options = {runValidators: true, new: true};
-            model.Product.findOneAndUpdate({product_name : Product.product_name}, {$push : UpdateItem}, options, function(err, doc){
+var addImageForProduct = function(Product, callback) {
+    var response;
+    if (!Product.hasOwnProperty('product_name')) {
+        response = 'Please specify  \'' + product_name +' \' property!\n';
+        logger.error(response);
+        callback(response);
+    } else if(!Product.hasOwnProperty('update')){
+        responose = 'Please specify added images with \'update\' property!\n';
+        logger.error(response);
+        callback(response);
+    }
+    var UpdateItem = Product['update'];
+    var options = { runValidators: true, new: true };
+    model.Product.findOneAndUpdate(
+        {product_name : Product.product_name},
+        {$push : UpdateItem},
+        options,
+        function(err, doc) {
             if (err) {
-                         response = 'Couldn\'t add image for product \n' + err.errmsg + '\n';
-                    logger.error(response);
-                    callback(response);
-            }else if (doc == null) {
-                         response = 'The product with ' +  Product.product_name +' name is missing\n';
-                    logger.warning(response);
-                    callback(response);
-            }else {
-                         response = 'Image added successfully! ' + doc + '\n';
-                    logger.info(response);
-                    callback(response);
+                response = 'Couldn\'t add image for product \n' + err.errmsg + '\n';
+                logger.error(response);
+                callback(response);
+            } else if (doc == null) {
+                response = 'The product with ' +  Product.product_name +' name is missing\n';
+                logger.warning(response);
+                callback(response);
+            } else {
+                response = 'Image added successfully! ' + doc + '\n';
+                logger.info(response);
+                callback(response);
             }
-    })};
+         })
+};
 
-    var deleteImageForProduct = function(Product, callback){
-            var response;
-            if(!Product.hasOwnProperty('product_name')) {
-                         response = 'Please specify  \'' + product_name +' \' property!\n';
-                    logger.error(response);
-                    callback(response);
-             }else if(!Product.hasOwnProperty('update')){
-                         responose = 'Please specify added images with \'update\' property!\n';
-                    logger.error(response);
-                    callback(response);
-            }
-            var UpdateItem = Product['update'];
-              var options = {runValidators: true, new: true};
-            model.Product.findOneAndUpdate({product_name : Product.product_name}, {$pull : UpdateItem}, options, function(err, doc){
-            if (err) {
-                         response = 'Couldn\'t delete image for product \n' + err.errmsg + '\n';
-                    logger.error(response);
-                    callback(response);
-            }else if (doc == null) {
-                         response = 'The product with ' +  Product.product_name +' name is missing\n';
-                    logger.warning(response);
-                    callback(response);
-            }else {
-                         response = 'Image deleted successfully! ' + doc + '\n';
-                    logger.info(response);
-                    callback(response);
-            }
-    })};
+var deleteImageForProduct = function(Product, callback){
+    var response;
+    if(!Product.hasOwnProperty('product_name')) {
+        response = 'Please specify  \'' + product_name +' \' property!\n';
+        logger.error(response);
+        callback(response);
+     } else if(!Product.hasOwnProperty('update')){
+        responose = 'Please specify added images with \'update\' property!\n';
+        logger.error(response);
+        callback(response);
+    }
+    var UpdateItem = Product['update'];
+    var options = {runValidators: true, new: true};
+    model.Product.findOneAndUpdate({product_name : Product.product_name},
+                                   {$pull : UpdateItem},
+                                   options,
+                                   function (err, doc) {
+        if (err) {
+           response = 'Couldn\'t delete image for product \n' + err.errmsg + '\n';
+            logger.error(response);
+            callback(response);
+        } else if (doc == null) {
+             response = 'The product with ' +  Product.product_name +' name is missing\n';
+            logger.warning(response);
+            callback(response);
+        } else {
+             response = 'Image deleted successfully! ' + doc + '\n';
+            logger.info(response);
+            callback(response);
+        }
+    })
+};
 
-    var updateProductFields = function(Product, callback){
-            var response;
-            if(!Product.hasOwnProperty(product_name)) {
-                         response = 'Please specify  \'' + product_name +' \' property!\n'
-                    logger.error(response);
-                    callback(response);
-             }else if(!Product.hasOwnProperty('update')){
-                         responose = 'Please specify updatable items with \'update\' property!\n';
-                    logger.error(response);
-                    callback(response);
-            }
-            var UpdateItem = Product['update'];
-              var options = {runValidators: true, new: true};
-            model.Product.findOneAndUpdate({product_name : Product.product_name}, {$set : UpdateItem}, options, function(err, doc){
-            if (err) {
-                         respose = 'Couldn\'t update the product \n' + err.errmsg + '\n';
-                    logger.error(response);
-                    callback(response);
-            }else if (doc == null) {
-                         response = 'The product with ' +  Product.product_name +' name is missing\n';
-                    logger.warning(response);
-                    callback(response);
-            }else {
-                         response = 'Product updated successfully! ' + doc + '\n';
-                    logger.info(response);
-                    callback(response);
-            }
-    })};
+var updateProductFields = function(Product, callback) {
+    var response;
+    if(!product.hasOwnProperty(product_name)) {
+        response = 'Please specify  \'' + product_name +' \' property!\n'
+        logger.error(response);
+        callback(response);
+     } else if(!Product.hasOwnProperty('update')){
+        responose = 'Please specify updatable items with \'update\' property!\n';
+        logger.error(response);
+        callback(response);
+    }
+    var UpdateItem = Product['update'];
+    var options = {runValidators: true, new: true};
+    model.Product.findOneAndUpdate(
+         {product_name : Product.product_name},
+         {$set : UpdateItem},
+         options,
+         function(err, doc){
+              if (err) {
+                   respose = 'Couldn\'t update the product \n' + err.errmsg + '\n';
+                   logger.error(response);
+                   callback(response);
+              } else if (doc == null) {
+                   response = 'The product with ' +  Product.product_name +' name is missing\n';
+                   logger.warning(response);
+                   callback(response);
+              } else {
+                   response = 'Product updated successfully! ' + doc + '\n';
+                   logger.info(response);
+                   callback(response);
+              }
+        })
+};
+
 module.exports = {
-
 
      addContacts : function(req, res) {
           logger.info('Adding contact to db\n  db.info.insert({ company_name : \'HayArt\', phone_number : \'(+374) 77 40 18 14\', address : \'q.VANADZOR, Mashtoci 47\', email : \'hayk7090@mail.ru\', index : \'2015\', proverb : \'xorimast mtqer el du sus\', main_text : \'The text for main page\', about_us_text : \'We are the best company!!!\', about_us_image : \'images/other/1.png\'})');
@@ -138,7 +152,7 @@ module.exports = {
           });
      },
      updateProduct : function(req, res){
-          var Product =  req.body;
+         var Product =  req.body;
          updateProductFields(Product, function(response){
             logger.info(response);
             res.send(response);
@@ -159,21 +173,21 @@ module.exports = {
           })
      },
 
-     deleteImage : function(req, res){
+     deleteImage : function(req, res) {
           logger.info('Deleting image');
           var Product =  req.body;
-         deleteImageForProduct(Product, function(response){
+          deleteImageForProduct(Product, function(response){
             logger.info(response);
             res.send(response);
-        })
-    },
+          })
+     },
 
      addImage : function(req, res){
           logger.info('Adding product image');
           var Product =  req.body;
-         addImageForProduct(Product, function(response){
+          addImageForProduct(Product, function(response){
             logger.info(response);
             res.send(response);
         })
-    }
+     }
 }
