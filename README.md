@@ -16,17 +16,17 @@
 	* angular2 - to create GUI
 
 
-### MongoDb
+## MongoDb
 
-	In order to create your local db, please do the following steps:
+###	In order to create your local db, please do the following steps:
 
 ```
 		mongorestore  --db HayArt HayArt_mongoDB/
 ```
 
-	In db there are 2 collections:
+###	In db there are 2 collections:
 
-####	1. info
+#####	1. info
 			* Stores the following types of information(they are the properties of docss stored in the collection) 1a
 				* company_name
 				* phone_number
