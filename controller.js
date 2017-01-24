@@ -45,17 +45,53 @@ var update = function(Product,updateOperator, callback) {
 
 module.exports = {
 
-     addContacts : function(req, res) {
-          logger.info('Adding contact to db\n  db.info.insert({ company_name : \'HayArt\', phone_number : \'(+374) 77 40 18 14\', address : \'q.VANADZOR, Mashtoci 47\', email : \'hayk7090@mail.ru\', index : \'2015\', proverb : \'xorimast mtqer el du sus\', main_text : \'The text for main page\', about_us_text : \'We are the best company!!!\', about_us_image : \'images/other/1.png\'})');
-     },
+    addContacts : function(req, res) {
+          var contact = new model.Contact(req.body);
+          contact.save(function(err, doc) {
+                if (err) {
+                     logger.error('Couldn\'t add the contact information \n' + err.errmsg);
+                     res.send( 'Couldn\'t add the contact information \n' + err.errmsg);
+                } else {
+                     logger.info('Information saved successfully!');
+                     res.send('Information saved successfully!');
+                     console.log(doc);
+                }
+          });
+    },
 
      getContacts : function (req, res) {
-          logger.info('Getting contacts \n db.info.find({company_name : \'HayArt\'}, {phone_number : 1, email : 1, address: 1, index : 1, proverb : 1, _id : 0}).pretty()');
+        var contact = req.query.contact_name;
+        var query = model.Contact.find();
+        query.exec(function(err,doc){
+                    if (err) {
+                         logger.error('Couldn\'t find the contact \n' + err.errmsg);
+                         res.send('Couldn\'t find the contact \n' + err.errmsg);
+                    }else {
+                         logger.info('Contact found successfully!' + doc);
+                         res.send('Contact found successfully!' + doc);
+                    }
+        })
      },
 
      updateContacts : function (req, res){
-          logger.info('Update Contacts\n  db.info.update({company_name : \'HayArt\'}, {$set:{\'index\':\'*newIndex*\'}})');
-     },
+        var UpdateContact = req.body['update'];
+        var options = { runValidators: true, new: true };
+        var query = model.Contact.findOneAndUpdate(
+                    {contact_name : UpdateContact.contact_name},
+                    {$set : UpdateContact},
+                        options);
+        query.exec(function(err,doc){
+            var response;
+            if (err) {
+                response = 'Contact updating failed \n' + err.errmsg + '\n';
+                logger.error(response);
+            } else {
+                response = 'Contact updated successfully!\n' + doc + '\n';
+                logger.info(response);
+            }
+            res.send(response);
+        })
+    },
 
      getIndex  : function(req, res) {
      //     res.render('index.html');
@@ -110,7 +146,7 @@ module.exports = {
 
      getProducts : function(req,res) {
         var product = req.query.product_name;
-		var query;
+        var query;
         if(product != undefined){
             query = model.Product.find({product_name : product});
         } else {

@@ -13,7 +13,7 @@ var productSchema = new Schema({
 });
 
 
-var infoSchema = new Schema({
+var contactSchema = new Schema({
     company_name : {type: String, required: [true, 'Please insert the company name'], unique: true},
     phone_number : {type: String, required: [true, 'Please insert phone number'], unique: true},
     address : {type: String, required: [true, 'Please insert address'], unique: true},
@@ -25,8 +25,8 @@ var infoSchema = new Schema({
     about_us_image : {type: String, required: [true, 'Please insert address']}
 })
 
-var Info = mongoose.model('Info', infoSchema);
+var Contact = mongoose.model('Contact', contactSchema);
 var Product = mongoose.model('Product', productSchema);
 
 module.exports.Product = Product;
-module.exports.Info = Info;
+module.exports.Contact = Contact;

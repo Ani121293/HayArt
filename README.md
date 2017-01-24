@@ -86,3 +86,18 @@
 ```
 				curl -X POST http://127.0.0.1:8081/details -d '{"product_name" : "enen", "update":{"product_types" :  "added_type.png"}}' -H "Content-Type: application/json"
 ```
+
+####	 2.CONTACTS
+
+#####	 add contact information:
+```
+			curl -X POST http://127.0.0.1:8081/contacts -d '{"company_name":"HayArt","phone_number":"(+374) 77 40 18 17","address":"q.VANADZOR, Mashtoci 47","email":"hayk7090@mail.ru","index":"2000","proverb":"xorimast mtqer el du sus","main_text":"The text for main page","about_us_text":"We are the best company!!!","about_us_image":"images/other/1.png"}' -H   "Content-Type: application/json" 	
+```
+#####	 update contact information:
+```
+				curl -X PUT http://127.0.0.1:8081/contacts -d '{"company_name":"HayArt", "update" :{"phone_number":"(+374) 99 70 90"}}' -H   "Content-Type: application/json" 
+```
+#####	 get contact information:
+```
+			curl -X GET http://127.0.0.1:8081/contacts?company_name=HayArt
+```
