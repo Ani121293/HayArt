@@ -95,7 +95,18 @@ module.exports = {
 
      getIndex  : function(req, res) {
      //     res.render('index.html');
-          logger.info('Getting Main page\n  db.info.find({company_name : \'HayArt\'}, {about_us_image : 0, about_us_text : 0, _id : 0, company_name : 0}).pretty()');
+            var query = Contact.find({company_name :"HayArt"}).select({about_us_image : 0, about_us_text : 0, _id : 0, company_name : 0});
+            query.exec(function(err,doc){
+            var response;
+            if (err) {
+                response = 'Couldn\'t get contact information for index page\n' + err.errmsg + '\n';
+                logger.error(response);
+            } else {
+                response = 'Got contact information successfully!\n' + doc + '\n';
+                logger.info(response);
+            }
+            res.send(response);
+        })
      },
 
      getAboutUs : function(req, res){

@@ -3,7 +3,7 @@ var express = require('express');
 var controller = require('./controller');
 
 module.exports = function(app){
-    app.get('/index', controller.getIndex);
+    app.get('/index', controller.getIndex);//
     app.get('/about_us',controller.getAboutUs);
     app.get('/contacts',controller.getContacts); //
     app.post('/contacts',controller.addContacts);//
