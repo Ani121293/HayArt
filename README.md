@@ -18,7 +18,7 @@
 
 ## MongoDb
 
-###	In order to create your local db, please do the following steps:
+###	In order to create your local db, please do the following step:
 
 ```
 		mongorestore  --db HayArt HayArt_mongoDB/
@@ -26,7 +26,7 @@
 
 ###	In db there are 2 collections:
 
-#####	1. info
+#####	1. CONTACTS
 			* Stores the following types of information(they are the properties of docss stored in the collection) 1a
 				* company_name
 				* phone_number
@@ -37,7 +37,7 @@
 				* about_us_text
 				* about_us_image
 
-####	2. products
+####	2. PRODUCTS
 			* Stores the following types of information(they are the properties of docss stored in the collection)
 				* product_name(unique)
 				* product_size
@@ -86,7 +86,21 @@
 ```
 				curl -X POST http://127.0.0.1:8081/details -d '{"product_name" : "enen", "update":{"product_types" :  "added_type.png"}}' -H "Content-Type: application/json"
 ```
+#####	get images for gallery:
 
+```
+				curl -X GET http://127.0.0.1:8081/gallery
+```
+#####	get image of specified product:
+
+```
+				curl -X GET http://127.0.0.1:8081/gallery?product_name=<product_name>
+```
+#####	get details of specified product:
+
+```
+				curl -X GET http://127.0.0.1:8081/details?product_name=<product_name>
+```
 ####	 2.CONTACTS
 
 #####	 add contact information:
@@ -97,7 +111,15 @@
 ```
 				curl -X PUT http://127.0.0.1:8081/contacts -d '{"company_name":"HayArt", "update" :{"phone_number":"(+374) 99 70 90"}}' -H   "Content-Type: application/json" 
 ```
-#####	 get contact information:
+#####	 get contact information for contact page:
 ```
 			curl -X GET http://127.0.0.1:8081/contacts?company_name=HayArt
+```
+#####	 get contact information for index page:
+```
+			curl -X GET http://127.0.0.1:8081/index
+```
+#####	 get contact information for about_us page:
+```
+			curl -X GET http://127.0.0.1:8081/about_us
 ```

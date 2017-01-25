@@ -95,14 +95,14 @@ module.exports = {
 
      getIndex  : function(req, res) {
      //     res.render('index.html');
-            var query = Contact.find({company_name :"HayArt"}).select({about_us_image : 0, about_us_text : 0, _id : 0, company_name : 0});
+            var query = model.Contact.find({company_name :"HayArt"}).select({about_us_image : 0, about_us_text : 0, _id : 0, company_name : 0});
             query.exec(function(err,doc){
             var response;
             if (err) {
                 response = 'Couldn\'t get contact information for index page\n' + err.errmsg + '\n';
                 logger.error(response);
             } else {
-                response = 'Got contact information successfully!\n' + doc + '\n';
+                response = 'Contact information got successfully!\n' + doc + '\n';
                 logger.info(response);
             }
             res.send(response);
@@ -110,14 +110,32 @@ module.exports = {
      },
 
      getAboutUs : function(req, res){
-          logger.info('Getting about_us page \n db.info.find({company_name : \'HayArt\'},{main_text : 0, company_name : 0, _id : 0}).pretty()');
+            var query = model.Contact.find({company_name :"HayArt"}).select({main_text : 0, company_name : 0, _id : 0});
+            query.exec(function(err,doc){
+            var response;
+            if (err) {
+                response = 'Couldn\'t get contact information for about us page\n' + err.errmsg + '\n';
+                logger.error(response);
+            } else {
+                response = 'Contact information got successfully for about us page!\n' + doc + '\n';
+                logger.info(response);
+            }
+            res.send(response);
+        })
      },
 
-
      getDetails  : function(req,res) {
-     //     var product_name = req.query.product_name;
-     //     res.send("Here should be opened the page of \'' + product_name + '\' product");
-          logger.info('Getting detail page of product \n db.products.find({product_name : \'*productName*\'},{ _id : 0}).pretty()');
+        var req_product_name = req.query.product_name;
+        var query = model.Product.find({product_name : req_product_name});
+        query.exec(function(err,doc){
+                    if (err) {
+                         logger.error('Couldn\'t find the' + req_product_name  + 'product\n' + err.errmsg);
+                         res.send('Couldn\'t find the' + req_product_name  + 'product\n' + err.errmsg);
+                    }else {
+                         logger.info('Product found successfully!' + doc);
+                         res.send('Product found successfully!' + doc);
+                    }
+        })
      },
      
      addProduct : function(req, res) {
@@ -156,13 +174,7 @@ module.exports = {
      },
 
      getProducts : function(req,res) {
-        var product = req.query.product_name;
-        var query;
-        if(product != undefined){
-            query = model.Product.find({product_name : product});
-        } else {
-            query = model.Product.find();
-        }
+        var query = model.Product.find().select({ _id : 0, product_image : 1});
         query.exec(function(err,doc){
                     if (err) {
                          logger.error('Couldn\'t find the product(s) \n' + err.errmsg);
@@ -183,11 +195,29 @@ module.exports = {
           })
      },
 
-     addImage : function(req, res){
+     addImage : function(req, res) {
           var Product =  req.body;
           update(Product,'addImage', function(response){
             logger.info(response);
             res.send(response);
         })
-     }
+    },
+    getGallery : function(req,res) {
+        var product = req.query.product_name;
+        var query;
+        if(product != undefined){
+            query = model.Product.find({product_name : product}).select({ _id : 0, product_images : 1});
+        } else {
+            query = model.Product.find().select({ _id : 0, product_images : 1});
+        }
+        query.exec(function(err,doc){
+                    if (err) {
+                         logger.error('Couldn\'t find images \n' + err.errmsg);
+                         res.send('Couldn\'t find images \n' + err.errmsg);
+                    }else {
+                         logger.info('Images found successfully!' + doc);
+                         res.send('Images found successfully!' + doc);
+                    }
+        })
+    }
 }
