@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var productSchema = new Schema({
     product_name : {type: String, required: [true, 'Please insert the product name'], unique: true },
+	pr_name :  {type: String, required: [true, 'Please insert the product name in Armenian'], unique: true },
     product_size : String,
     product_weight : String,
     product_image : {type: String, required: [true, 'Please upload the product image'], unique: true },

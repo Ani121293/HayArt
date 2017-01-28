@@ -174,7 +174,7 @@ module.exports = {
      },
 
      getProducts : function(req,res) {
-        var query = model.Product.find().select({ _id : 0, product_image : 1});
+        var query = model.Product.find().select({ _id : 0, product_image : 1, pr_name : 1});
         query.exec(function(err,doc){
                     if (err) {
                          logger.error('Couldn\'t find the product(s) \n' + err.errmsg);

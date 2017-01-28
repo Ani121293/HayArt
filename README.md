@@ -40,6 +40,7 @@
 ####	2. PRODUCTS
 			* Stores the following types of information(they are the properties of docss stored in the collection)
 				* product_name(unique)
+				* pr_name(Aremnian name of product)
 				* product_size
 				* product_weight
 				* product_image(unique)
@@ -63,7 +64,7 @@
 #####	add a product:
 
 ```
-				curl -X POST http://127.0.0.1:8081/products -d '{"product_name":"elen","product_size":"4.4*3.2","product_weight":"0.5kg","product_image":"enenikos.gpg","product_types":["t1.png","t2.png"],"product_images":["i1.png, i2.png"]}' -H   "Content-Type: application/json"
+				curl -X POST http://127.0.0.1:8081/products -d '{"product_name":"elen", "pr_name" : "Էլեն""product_size":"4.4*3.2","product_weight":"0.5","product_image":"enenikos.gpg","product_types":["t1.png","t2.png"],"product_images":["i1.png, i2.png"]}' -H   "Content-Type: application/json"
 ```
 
 #####	update a product:
