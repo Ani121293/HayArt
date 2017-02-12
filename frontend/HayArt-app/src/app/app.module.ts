@@ -9,30 +9,34 @@ import { HomeViewComponent } from './home-view/home-view.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { ProductsComponent } from './products/products.component';
 
 const appRoutes: Routes = [
   {
     path: 'home',
     component: HomeViewComponent
   },
-  { 
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
-  { 
+  {
     path: 'aboutUs',
     component: AboutUsComponent
   },
-  { 
+  {
     path: 'gallery',
     component: GalleryComponent
   },
-  { 
+  {
     path: 'feedback',
     component: FeedbackComponent
+  },
+  {
+    path: 'products',
+    component: ProductsComponent
   }
-
 ];
 
 @NgModule({
@@ -41,13 +45,14 @@ const appRoutes: Routes = [
     HomeViewComponent,
     AboutUsComponent,
     GalleryComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)   
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

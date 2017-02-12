@@ -1,8 +1,26 @@
-<h1 class="title">Angular Router</h1>
-<nav>
-    <a routerLink="/home" routerLinkActive="active">Home</a>
-    <a routerLink="/aboutUs" routerLinkActive="active">About us</a>
-    <a routerLink="/gallery" routerLinkActive="active">Gallery</a>
-    <a routerLink="/feedback" routerLinkActive="active">Feedback</a>
+<div id="header">
+    <h2 class="title">ՀայԱրտ Դեկոր</h2>
+    <div class="contact">
+        <span>(+374)77 40 18 14</span> <!-- TODO *ngFor from any servive-->
+    </div>
+</div>
+<nav class="menu">
+    <a routerLink="/home" routerLinkActive="active">Գլխավոր</a>
+    <a routerLink="/products" routerLinkActive="active">Տեսականի</a>
+    <a routerLink="/gallery" routerLinkActive="active">Ֆոտոդարան</a>
+    <a routerLink="/feedback" routerLinkActive="active">Հետադարձ կապ</a>
+    <a routerLink="/aboutUs" routerLinkActive="active">Մեր մասին</a>
+    <a class="flag" routerLink="/" routerLinkActive="active">
+       <img alt="armenian flag" width="20" height="20" src="../assets/arm_flag.png"/>
+    </a>
+    <a class="flag" routerLink="/" routerLinkActive="active">
+       <img alt="russian flag" width="20" height="20" src="../assets/rus_flag.png"/>
+    </a>
 </nav>
 <router-outlet></router-outlet>
+<div id="footer">
+  Footer
+  <div class="contact">
+      <span>(+374)77 40 18 14</span> <!-- TODO *ngFor from any servive-->
+  </div>
+</div>
