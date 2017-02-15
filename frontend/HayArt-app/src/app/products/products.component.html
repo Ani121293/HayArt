@@ -1,7 +1,11 @@
 <div id="content">
     <div>
-        <p>
-            products component works!
-        </p>
+        <div class="product_container" *ngFor="let product of getProducts();">
+            <img class="product_image" alt="product image" src="./assets/{{product.image}}"/>
+            <div>
+                <p class="product_name">{{product.name}}</p>
+                <img class="arrow_icon" alt="arrow icon" src="./assets/arrow.svg"/>
+            </div>
+        </div>
     </div>
 </div>
