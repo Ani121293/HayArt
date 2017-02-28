@@ -1,8 +1,7 @@
 export class Product {
   id: number;
   constructor(
-    public name: string,
-    public image: string,
-    public power?: string) {
-    }
+    public pr_name: string,
+    public product_image: string 
+    ){}
 }
