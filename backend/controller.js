@@ -181,7 +181,7 @@ module.exports = {
                          res.send('Couldn\'t find the product(s) \n' + err.errmsg);
                     }else {
                          logger.info('Product(s) found successfully!' + doc);
-                         res.send('Product(s) found successfully!' + doc);
+                         res.send(doc);
                     }
         })
 

@@ -15,19 +15,17 @@ export class ProductsComponent implements OnInit{
   products: Product[];
   mode = 'Observable';
 
-  constructor(private productService: ProductsService) { };
-
-  getProducts() {
-      this.productService.getProducts()
+  constructor(private productService: ProductsService) {
+      productService.getProducts()
                      .subscribe(
-                       products => this.products = products,
+                       products => {
+                           this.products = products;
+                       },
                        error =>  this.errorMessage = <any>error);
-  }
 
-ngOnInit() {
-	this.getProducts();
-};
-	
+  };
 
+
+  ngOnInit() {};
 
 }
