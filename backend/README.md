@@ -21,7 +21,7 @@
 ###	In order to create your local db, please do the following step:
 
 ```
-		mongorestore  --db HayArt HayArt_mongoDB/
+		mongorestore --host 127.0.0.1 --port 27017  HayArt_db/
 ```
 
 ###	In db there are 2 collections:
@@ -53,12 +53,6 @@
 
 ```
 				curl -X GET http://127.0.0.1:8081/products
-```
-
-#####	get one product:
-
-```
-				curl -X GET http://127.0.0.1:8081/products?product_name=<product_name>
 ```
 
 #####	add a product:
