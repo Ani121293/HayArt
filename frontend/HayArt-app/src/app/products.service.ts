@@ -15,12 +15,10 @@ export class ProductsService {
 
   private extractData(res: Response) {
     let body = res.json();
-	console.log("-----------------------------------", body);
-    return body.data || [];
+    return body || [];
   };
 
   getProducts (): Observable<Product[]> {
-    //console.log("Providing products..", PRODUCTS);
     return this.http.get(this.productsUrl)
          .map(this.extractData)
          .catch(this.handleError);

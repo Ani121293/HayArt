@@ -1,12 +1,11 @@
 <div id="content">
     <div>
     <div class="product_container" *ngFor="let product of products;">
-        <img class="product_image" alt="product image" src="./assets/{{product.image}}"/>
+        <img class="product_image" alt="product image" src="./assets/{{product.product_image}}"/>
          <div>
-             <p class="product_name">{{product.name}}</p>
+             <p class="product_name">{{product.pr_name}}</p>
              <img class="arrow_icon" alt="arrow icon" src="./assets/arrow.svg"/>
          </div>
     </div>
-    <button (click)="getProducts();">Click me</button>
     </div>
 </div>

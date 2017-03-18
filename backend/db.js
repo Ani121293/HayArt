@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://127.0.0.1:27017/HayArt', function(err,db){
     if(err){
         logger.info('Unable to connect to db');
+    } else {
+        logger.info('Connected to the database !!!!!');
     }
-    logger.info('Connected to the database !!!!!');
 });
