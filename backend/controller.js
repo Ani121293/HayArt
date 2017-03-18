@@ -174,14 +174,14 @@ module.exports = {
      },
 
      getProducts : function(req,res) {
-        var query = model.Product.find().select({ _id : 0, product_image : 1, pr_name : 1});
+        var query = model.Product.find().select({ _id : 0, product_image : 1, pr_name : 1, product_name : 1});
         query.exec(function(err,doc){
                     if (err) {
                          logger.error('Couldn\'t find the product(s) \n' + err.errmsg);
-                         res.send('Couldn\'t find the product(s) \n' + err.errmsg);
+                         res.send(err.errmsg);
                     }else {
                          logger.info('Product(s) found successfully!' + doc);
-                         res.send('Product(s) found successfully!' + doc);
+                         res.send(doc);
                     }
         })
 
@@ -206,9 +206,9 @@ module.exports = {
         var product = req.query.product_name;
         var query;
         if(product != undefined){
-            query = model.Product.find({product_name : product}).select({ _id : 0, product_images : 1});
+            query = model.Product.find({product_name : product}).select({ _id : 0,product_name : 1, product_images : 1});
         } else {
-            query = model.Product.find().select({ _id : 0, product_images : 1});
+            query = model.Product.find().select({ _id : 0, product_name : 1,product_images : 1});
         }
         query.exec(function(err,doc){
                     if (err) {
