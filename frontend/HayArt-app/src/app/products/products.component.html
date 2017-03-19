@@ -1,5 +1,5 @@
 <div id="content">
-    <div>
+    <div *ngIf="!this.product">
     <div class="product_container" *ngFor="let product of products;">
         <img class="product_image" alt="product image" src="./assets/{{product.product_image}}"/>
          <div>
@@ -7,5 +7,8 @@
              <a (click)="showDetails(product.product_name);"><img class="arrow_icon" alt="arrow icon" src="./assets/arrow.svg"/></a>
          </div>
     </div>
+    </div>
+    <div>
+        <products-details [productDetail]="this.product"></products-details>
     </div>
 </div>

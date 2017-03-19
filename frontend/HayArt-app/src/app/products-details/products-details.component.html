@@ -1,3 +1,13 @@
-<p>
-  products-details works!
-</p>
+<div *ngIf="productDetail">
+      <h2>{{productDetail.pr_name}}</h2>
+      <div style="margin: 0 auto;">
+          <img width="200px" height="140px" src="../../assets/{{productDetail.product_image}}"/>
+          <img width="100px" height="70px" src="../../assets/{{productDetail.product_images[0]}}"/>
+          <img width="100px" height="70px" src="../../assets/{{productDetail.product_images[1]}}"/>
+          <img width="100px" height="70px" src="../../assets/{{productDetail.product_images[2]}}"/>
+      </div>
+      <p>N1</p>
+
+      <p>Չափերը   {{productDetail.product_size}}</p>
+      <p>Քաշը     {{productDetail.product_weight}}կգ</p>
+</div>
