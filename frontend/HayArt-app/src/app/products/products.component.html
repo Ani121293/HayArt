@@ -4,7 +4,7 @@
         <img class="product_image" alt="product image" src="./assets/{{product.product_image}}"/>
          <div>
              <p class="product_name">{{product.pr_name}}</p>
-             <img class="arrow_icon" alt="arrow icon" src="./assets/arrow.svg"/>
+             <a (click)="showDetails(product.product_name);"><img class="arrow_icon" alt="arrow icon" src="./assets/arrow.svg"/></a>
          </div>
     </div>
     </div>

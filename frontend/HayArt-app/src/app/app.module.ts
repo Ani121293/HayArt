@@ -10,6 +10,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductsDetailsComponent } from './products-details/products-details.component';
 
 const appRoutes: Routes = [
   {
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     AboutUsComponent,
     GalleryComponent,
     FeedbackComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductsDetailsComponent
   ],
   imports: [
     BrowserModule,

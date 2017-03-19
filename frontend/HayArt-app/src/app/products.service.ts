@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { Product } from './product';
+import { ProductDetails } from './ProductDetails';
 
 @Injectable()
 export class ProductsService {
@@ -18,11 +19,24 @@ export class ProductsService {
     return body || [];
   };
 
+  private extractJsonData(res: Response) {
+    let body = res.json();
+    return body || {};
+  }
+
   getProducts (): Observable<Product[]> {
     return this.http.get(this.productsUrl)
          .map(this.extractData)
          .catch(this.handleError);
   };
+
+  getDetails (productName): Observable<ProductDetails> {
+    let requestUrl = 'http://localhost:8081/details?product_name=' + productName;
+    console.log(requestUrl);
+    return this.http.get(requestUrl)
+         .map(this.extractJsonData)
+         .catch(this.handleError);
+  }
 
   private handleError (error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure

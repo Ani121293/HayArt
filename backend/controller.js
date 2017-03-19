@@ -133,7 +133,7 @@ module.exports = {
                          res.send('Couldn\'t find the' + req_product_name  + 'product\n' + err.errmsg);
                     }else {
                          logger.info('Product found successfully!' + doc);
-                         res.send('Product found successfully!' + doc);
+                         res.send(doc);
                     }
         })
      },
