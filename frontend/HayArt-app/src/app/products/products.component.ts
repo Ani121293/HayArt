@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { Product } from '../product';
 import { ProductDetails } from '../ProductDetails';
+import { ProductsDetailsComponent } from '../products-details/products-details.component';
 
 @Component({
   selector: 'app-products',
@@ -14,7 +15,6 @@ export class ProductsComponent implements OnInit{
 
   errorMessage: string;
   products: Product[];
-  //currentProduct: Product;
   mode = 'Observable';
   product: ProductDetails;
 
@@ -32,7 +32,7 @@ export class ProductsComponent implements OnInit{
       this.productService.getDetails(productName)
                      .subscribe(
                         product => {
-                           this.product = product;                     
+                           this.product = product[0];
                            console.log("Current product :", this.product);
                         },
                         error  => this.errorMessage = <any>error);
