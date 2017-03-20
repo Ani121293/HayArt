@@ -1,18 +1,25 @@
 <div id="header">
-	<h2 class="title">HayArt Decor</h2>
-		<span>Խորիմաստ մտքեր Էլ դու սուս․․․․․․</span>
-	<ul class="contact" >
+	<div id = "title">
+		<h4>HayArt Decor</h4>
+	</div>
+	<div id="maxim">
+		<h5>Խորիմաստ մտքեր Էլ դու սուս․․․․․․</h5>
+	</div>
+	<ul id="contact" >
 		<li>(+374)77 40 18 14</li> <!-- TODO *ngFor from any servive-->
 		<li>(+374)99 40 18 14</li> <!-- TODO *ngFor from any servive-->
 		<li>(+374)55 40 18 14</li>
 	</ul> <!-- TODO *ngFor from any servive-->
 </div>
-<nav class="menu">
-	<a routerLink="/home" routerLinkActive="active">Գլխավոր</a>
-	<a routerLink="/products" routerLinkActive="active">Տեսականի</a>
-	<a routerLink="/gallery" routerLinkActive="active">Ֆոտոդարան</a>
-	<a routerLink="/feedback" routerLinkActive="active">Հետադարձ կապ</a>
-	<a routerLink="/aboutUs" routerLinkActive="active">Մեր մասին</a>
+<nav id="menu">
+	<a routerLink="/" routerLinkActive="active">
+	   <img  id="logo" alt="logo" src="../assets/logo.png"/>
+	</a>
+	<a  class= "menu_item" routerLink="/home" routerLinkActive="active">Գլխավոր</a>
+	<a class= "menu_item"  routerLink="/products" routerLinkActive="active">Տեսականի</a>
+	<a  class= "menu_item" routerLink="/gallery" routerLinkActive="active">Ֆոտոդարան</a>
+	<a class= "menu_item"  routerLink="/feedback" routerLinkActive="active">Հետադարձ կապ</a>
+	<a class= "menu_item"  routerLink="/aboutUs" routerLinkActive="active">Մեր մասին</a>
 	<a class="flag" routerLink="/" routerLinkActive="active">
 	   <img alt="armenian flag" width="20" height="20" src="../assets/arm_flag.png"/>
 	</a>

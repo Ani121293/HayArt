@@ -1,23 +1,37 @@
 #header {
+	display: -webkit-flex;
+  	display: flex;
+  	-webkit-flex-flow: row wrap;
+ 	flex-flow: row wrap;
 	background-color: #D79763;
-	height: 30%;
 	width: 100%;
+	font-size: 100%;
 }
 
-#header > h2 {
-	margin-left: 3%;
-	margin-right: 2%;
+#title, #maxim, #contact {
+	width: 100%;
+	margin : 0;
+	padding: 0;
+}
+
+#title > h4 {
+	margin:0;
+	padding:0;
+}
+ 
+#title {
 	font-size: 4em;
+	font-style: oblique;
 	color : #444444;
 	display: inline-block;
 	font-family: Caflisch Script Pro, cursive;
 }
 
-#header > div > span {
-	margin-top : 0;
-	margin-right: 7%;
+#maxim {
 	font-size: 1em;
+	padding : 1%;
 	text-align:left;
+	font-style: oblique;
 }
 
 ul{
@@ -25,40 +39,52 @@ ul{
 	padding: 0%;
 }
 
-#header > .contact >li {
+#contact >li {
 	margin:0%;
 	padding: 0%;
 }
 
-@media screen and (max-width: 920px) {
+@media (min-width: 600px) {
+  #title {
+	font-size: 3em;
+    width: 35%;
+    -webkit-order: 1;
+    order: 1;
+  }
 
-	#header > h2 {
-		margin-right : 70%;
-	}
+  #maxim{
+    width: 65%;
+    -webkit-order: 2;
+    order: 2;
+  }
 
-	#header > span {
-		margin-right : 70%;
-		margin-left: 3%;
-	}
-
-	.contact {
-		margin-left: 3%;
-		padding : 0%;
-	}
-}
-
-@media screen and (max-width: 520px) {
-	ul.contact {
-		width: 300px; !important
-		margin-right: 0%;
-		margin-left: 0%;
-	}
-}
-
-.contact {
+  #contact{
+	padding: 1%;
+    width: 100%;
+    -webkit-order: 3;
+    order: 3;
+  }
+  
+  menu > a, #logo, .flag {
 	width: 25%;
-	margin-left: 5%;
-	margin-right: 3%;
+  }	
+}
+
+@media (min-width: 800px) {
+  #maxim {
+    width: 40%;
+  }
+
+  #contact {
+    width: 20%;
+  }
+  menu > a, #logo, .flag {
+	width: 50%;
+	text-decoration : none;
+  }	
+}
+
+#contact {
 	display: inline-block;
 	color : #444444;
 	font-size: 1em;
@@ -85,27 +111,35 @@ ul{
 	height: 40%;
 	width: 100%;
 }
-.menu {
+#menu {
+	display: -webkit-flex;
+  	display: flex;
+  	-webkit-flex-flow: row wrap;
+ 	flex-flow: row wrap;
 	width: 100%;
-	height: 10%;
 	background-color: #444444;
 }
 
-.menu a {
-	display: inline-block;
-	padding: 15px 5px;
-	text-align: center;
-	font-size: 14px;
-	color: #E6E6EC;
-	width: 14%;
+.menu_item{
+	text-decoration: none;
+	margin-left :  1%;
+	margin-right : 1%;
+	padding: 1%;
+	height : 4%;
+	
+	
 }
 
-.menu a:hover {
+.menu_item :hover {
 	color : #D79763;
 
 }
+#logo {
+	width: 5em;
+	height: 3em;  
+}	
 .flag {
-	width: 20px !important;
-	height: 20px;
-	padding: 15px 0px;
+	width: 4em;
+	height: 4em;
+	padding: 1%;
 }
